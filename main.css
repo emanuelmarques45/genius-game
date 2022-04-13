@@ -87,6 +87,10 @@ main {
     animation: 500ms ease-out forwards piscadola;
 }
 
+.game>.touchable {
+    cursor: pointer;
+}
+
 /* ---------- ANIMATION ---------- */
 @keyframes piscadola {
     50% {

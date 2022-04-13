@@ -1,23 +1,29 @@
-
-// const gamePads = mainContent.getElementsByClassName("game__pad")
+// const gamePads = game.getElementsByClassName("game__pad")
+const game = document.querySelector("div.game")
+const gamePads = Array.from(game.querySelectorAll("div"))
 const divScore = document.querySelector("div.score")
-const mainContent = document.querySelector("div.game")
-const gamePads = Array.from(document.querySelectorAll("div"))
 const counterStart = document.querySelector("div#counter-start")
 
 let sequence = []
 let animatingColors = false
 let currentColorPosition = 0
 
-mainContent.addEventListener("click", ev => {
+game.addEventListener("click", ev => {
     if (animatingColors) {
-        console.log("espere a animação terminar")
+        counterStart.innerHTML = "Espere a animação terminar!"
+        setTimeout(() => {
+            counterStart.innerHTML = " "
+        }, 3000)
         return
     }
     const idxClickedElement = gamePads.indexOf(ev.target)
     if (idxClickedElement !== sequence[currentColorPosition]) {
-        alert("perdeu playboy!")''
-        inicio()
+        counterStart.style.color = "red"
+        counterStart.innerHTML = "Você perdeu!"
+        setTimeout(() => {
+            inicio()
+            counterStart.style.color = "black"
+        }, 2500);
         return
     }
     currentColorPosition++
@@ -44,7 +50,6 @@ function playAnimationColors() {
         }, 1000 * index)
     })
 }
-
 function inicio() {
     let counter = 4
     sequence = []
@@ -54,13 +59,20 @@ function inicio() {
         if (counter <= 0) {
             clearInterval(idx)
             counterStart.innerHTML = "O jogo inicia em <br>" + (counter) + ""
-            turno()
+            setTimeout(() => {
+                counterStart.innerHTML = "JOGUE!"
+                turno()
+            }, 1000);
+            setTimeout(() => {
+                counterStart.innerHTML = " "
+            }, 5000);
         }
     }, 1000)
 
+    gamePads.forEach(div => {
+        div.classList.add("touchable")
+    })
 }
-
-
 
 function turno() {
     divScore.innerHTML = sequence.length
