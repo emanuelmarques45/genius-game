@@ -27,8 +27,8 @@ main {
 }
 
 .game {
-    height: 60vh;
-    width: 60vh;
+    height: 80vh;
+    width: 80vh;
     display: flex;
     flex-wrap: wrap;
     border-radius: 50%;
@@ -136,11 +136,12 @@ div.buttons {
     margin: 1rem 0;
     text-align: center;
     line-height: 1.2;
+    font-size: min(1.15rem, 2vw);
 }
 
 /* ---------- SCORE ---------- */
 
 div.score {
-    font-size: 2rem;
+    font-size: min(2rem, 3vw);
     text-align: center;
 }
